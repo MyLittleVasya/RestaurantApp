@@ -1,8 +1,12 @@
 package com.example.chatrebuild.controller;
 
+import com.example.chatrebuild.service.MailService;
+import com.example.chatrebuild.service.UserService;
 import com.example.chatrebuild.tool.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,34 +16,40 @@ public class AuthController {
     @Autowired
     private JwtProvider jwtProvider;
 
-    public class Test {
-        String login;
-        String token;
+    @Autowired
+    private MailService mailService;
 
-        public Test(String login, String token) {
-            this.login = login;
-            this.token = token;
-        }
+    @Autowired
+    private UserService userService;
 
-        public String getLogin() {
-            return login;
-        }
 
-        public void setLogin(String login) {
-            this.login = login;
-        }
-
-        public String getToken() {
-            return token;
-        }
-
-        public void setToken(String token) {
-            this.token = token;
-        }
+    @PostMapping("/login")
+    public String returnToken(@RequestParam String login, @RequestParam String password) {
+        if (userService.authUser(login, password))
+            return jwtProvider.provideToken(login);
+        else
+            return "502";
     }
 
-    @GetMapping("/login")
-    public Test returnToken(@RequestParam String login) {
-        return new Test(login, jwtProvider.provideToken(login));
+    @PostMapping("/register")
+    public HttpStatus registration(@RequestParam String login,
+                                   @RequestParam String password,
+                                   @RequestParam String email) {
+        if (userService.createNewUser(login, password, email))
+            return HttpStatus.OK;
+        else
+            return HttpStatus.BAD_GATEWAY;
     }
+
+    @GetMapping("/activate")
+    public HttpStatus activateUser(@RequestParam String token,
+                                   @RequestParam String login) {
+        if (userService.tryActivateUser(token, login))
+            return HttpStatus.OK;
+        else
+            return HttpStatus.BAD_GATEWAY;
+    }
+
+
+
 }
