@@ -15,20 +15,17 @@ public class MailService {
     @Autowired
     private JwtProvider jwtProvider;
 
-    public void sendActivationCode(String email, String username) throws Exception{
+    public void sendActivationCode(String email, String code) throws Exception{
         var message = new SimpleMailMessage();
         message.setSubject("Activate your account NO REPLY");
         message.setFrom("www.maxim2003@ukr.net");
         message.setTo(email);
         message.setText(String.format
                         (
-                "Hello %s!\n" +
-                        "Welcome to FirstJob! \n"+
-                        "Visit next link to activate your account \n"+
-                        "http://localhost:8080/activate?token=%s&login=%s",
-                username,
-                jwtProvider.provideToken(username),
-                                username
+                "Hello!\n" +
+                        "Welcome to RestaurantPlatform! \n"+
+                        "Here is your activation code! \n"+
+                        "CODE: %s", code
                         )
         );
         javaMailSender.send(message);

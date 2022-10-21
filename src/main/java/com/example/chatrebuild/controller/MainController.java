@@ -12,6 +12,11 @@ public class MainController {
         return HttpStatus.OK;
     }
 
+    @GetMapping("/customer")
+    public HttpStatus newMethod2() {
+        return HttpStatus.OK;
+    }
+
     @GetMapping("/secured")
     public HttpStatus newSecured() {return HttpStatus.OK;}
 }

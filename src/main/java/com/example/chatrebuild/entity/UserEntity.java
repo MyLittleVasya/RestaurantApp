@@ -1,6 +1,7 @@
 package com.example.chatrebuild.entity;
 
 import javax.persistence.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 @Table(name = "users")
@@ -17,11 +18,15 @@ public class UserEntity {
 
     private boolean activated;
 
+    private String activationCode;
+    private UserRole role;
+
     public UserEntity(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.activated = false;
+        this.activationCode = Integer.toString(ThreadLocalRandom.current().nextInt(100000, 1000000));
     }
 
     public UserEntity() {
@@ -65,5 +70,21 @@ public class UserEntity {
 
     public void setActivated(boolean activated) {
         this.activated = activated;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 }
