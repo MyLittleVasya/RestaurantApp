@@ -24,6 +24,7 @@ public class MailService {
                         (
                 "Hello!\n" +
                         "Welcome to RestaurantPlatform! \n"+
+                        "Your email was used for registering a new account\n" +
                         "Here is your activation code! \n"+
                         "CODE: %s", code
                         )

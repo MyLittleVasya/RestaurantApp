@@ -17,7 +17,7 @@ public class RoleFilter extends OncePerRequestFilter {
     @Autowired
     private JwtProvider jwtProvider;
 
-    private final String[] publicURI = {"/main", "/login", "/register", "/activate", "/createDish", "/dishes"};
+    private final String[] publicURI = {"/main", "/login", "/register", "/activate", "/createDish", "/dishes", "/createOrder", "/showOrders", "/deleteOrder"};
 
     private final String[] customerURI = {"/customer"};
 

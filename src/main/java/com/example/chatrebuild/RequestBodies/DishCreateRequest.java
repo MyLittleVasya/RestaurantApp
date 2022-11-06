@@ -1,18 +1,17 @@
 package com.example.chatrebuild.RequestBodies;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-
 public class DishCreateRequest {
     private String name;
     private double price;
     private String image;
 
-    public DishCreateRequest(String name, double price, String image) {
+    private String dishType;
+
+    public DishCreateRequest(String name, String dishType, double price, String image) {
         this.name = name;
         this.price = price;
         this.image = image;
+        this.dishType = dishType;
     }
 
     public DishCreateRequest() {
@@ -40,5 +39,13 @@ public class DishCreateRequest {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDishType() {
+        return dishType;
+    }
+
+    public void setDishType(String dishType) {
+        this.dishType = dishType;
     }
 }

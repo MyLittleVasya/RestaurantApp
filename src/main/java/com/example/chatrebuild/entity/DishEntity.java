@@ -1,5 +1,8 @@
 package com.example.chatrebuild.entity;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,13 +16,16 @@ public class DishEntity {
 
     private double price;
 
+    private String dishType;
+
     @Lob
     private byte[] dishImageFile;
 
-    public DishEntity(String dishName, double price, byte[] dishImageFile) {
+    public DishEntity(String dishName, double price, byte[] dishImageFile, String dishType) {
         this.dishName = dishName;
         this.price = price;
         this.dishImageFile = dishImageFile;
+        this.dishType = dishType;
     }
 
     public DishEntity() {
@@ -55,5 +61,13 @@ public class DishEntity {
 
     public void setDishImageFile(byte[] dishImageFile) {
         this.dishImageFile = dishImageFile;
+    }
+
+    public String getDishType() {
+        return dishType;
+    }
+
+    public void setDishType(String dishType) {
+        this.dishType = dishType;
     }
 }

@@ -11,7 +11,6 @@ public class MainController {
     public HttpStatus newMethod() {
         return HttpStatus.OK;
     }
-
     @GetMapping("/customer")
     public HttpStatus newMethod2() {
         return HttpStatus.OK;

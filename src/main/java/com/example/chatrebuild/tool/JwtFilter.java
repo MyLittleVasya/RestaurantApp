@@ -18,7 +18,7 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     private JwtProvider jwtProvider;
 
-    private final String[] publicURI = {"/main", "/login", "/register", "/activate", "/createDish", "/dishes"};
+    private final String[] publicURI = {"/main", "/login", "/register", "/activate", "/createDish", "/dishes", "/createOrder", "/showOrders", "/deleteOrder"};
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
