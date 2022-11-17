@@ -1,0 +1,1 @@
+It`s my pet project, where i tried to create a RESTful service, using Java, Spring, Hibernate. Minor changes were done with a Security of application because of using JWT-tokens and custom filters, to authenticate and authorize requests. Application can send messages through email.
