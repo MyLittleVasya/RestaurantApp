@@ -5,14 +5,12 @@ public class DishFilterRequest {
     int low;
     int high;
     boolean sorting;
-    String dishType;
 
-    public DishFilterRequest(int page, int low, int high, boolean sorting, String dishType) {
+    public DishFilterRequest(int page, int low, int high, boolean sorting) {
         this.page = page;
         this.low = low;
         this.high = high;
         this.sorting = sorting;
-        this.dishType = dishType;
     }
 
     public DishFilterRequest() {
@@ -50,11 +48,4 @@ public class DishFilterRequest {
         this.sorting = sorting;
     }
 
-    public String getDishType() {
-        return dishType;
-    }
-
-    public void setDishType(String dishType) {
-        this.dishType = dishType;
-    }
 }

@@ -1,5 +1,7 @@
 package com.example.chatrebuild.dto;
 
+import javax.persistence.Lob;
+
 public class DishDTO {
     private String name;
     private double price;
@@ -8,7 +10,6 @@ public class DishDTO {
         this.name = name;
         this.price = price;
     }
-
     public DishDTO() {
     }
 

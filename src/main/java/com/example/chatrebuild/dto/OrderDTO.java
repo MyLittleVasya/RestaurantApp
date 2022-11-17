@@ -7,10 +7,13 @@ public class OrderDTO {
     private List<DishDTO> dishes;
     private double price;
 
-    public OrderDTO(long id, List<DishDTO> dishes, double price) {
+    private String orderState;
+
+    public OrderDTO(long id, List<DishDTO> dishes, double price, String orderState) {
         this.id = id;
         this.dishes = dishes;
         this.price = price;
+        this.orderState = orderState;
     }
 
     public OrderDTO() {
@@ -38,5 +41,13 @@ public class OrderDTO {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(String orderState) {
+        this.orderState = orderState;
     }
 }

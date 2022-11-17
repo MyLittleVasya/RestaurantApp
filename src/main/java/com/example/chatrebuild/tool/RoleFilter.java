@@ -17,11 +17,11 @@ public class RoleFilter extends OncePerRequestFilter {
     @Autowired
     private JwtProvider jwtProvider;
 
-    private final String[] publicURI = {"/main", "/login", "/register", "/activate", "/createDish", "/dishes", "/createOrder", "/showOrders", "/deleteOrder"};
+    private final String[] publicURI = {"/main", "/login", "/register", "/activate", "/dishes", "/createOrder", "/showOrders", "/deleteOrder"};
 
-    private final String[] customerURI = {"/customer"};
+    private final String[] workerURI = {"/changeOrderState", "/getAllOrders"};
 
-    private final String[] adminURI = {"/secured"};
+    private final String[] adminURI = {"/secured",  "/registerEmployee", "/createDish", "/allDishes", "/updateDish", "/deleteDish"};
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -36,31 +36,13 @@ public class RoleFilter extends OncePerRequestFilter {
                 var uri = request.getRequestURI();
                 var role = jwtProvider.checkRoleJWT(token, login);
 
-                if (role.equals("CUSTOMER")){
-                    if (Arrays.asList(customerURI).contains(uri))
-                        filterChain.doFilter(request, response);
-                    else
-                        response.sendError(403);
-                }
                 if (role.equals("WORKER")){
-                    if (Arrays.asList(customerURI).contains(uri))
+                    if (Arrays.asList(workerURI).contains(uri))
                         filterChain.doFilter(request, response);
                     else
                         response.sendError(403);
                 }
-                if (role.equals("COOKER")){
-                    if (Arrays.asList(customerURI).contains(uri))
-                        filterChain.doFilter(request, response);
-                    else
-                        response.sendError(403);
-                }
-                if (role.equals("MANAGER")){
-                    if (Arrays.asList(customerURI).contains(uri))
-                        filterChain.doFilter(request, response);
-                    else
-                        response.sendError(403);
-                }
-                if (role.equals("ADMIN")){
+                if (role.equals("ADMIN")) {
                     if (Arrays.asList(adminURI).contains(uri))
                         filterChain.doFilter(request, response);
                     else

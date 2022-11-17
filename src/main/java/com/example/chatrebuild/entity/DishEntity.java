@@ -17,7 +17,6 @@ public class DishEntity {
     private double price;
 
     private String dishType;
-
     @Lob
     private byte[] dishImageFile;
 

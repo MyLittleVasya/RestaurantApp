@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class OrderController {
@@ -34,5 +35,17 @@ public class OrderController {
             return HttpStatus.OK;
         else
             return HttpStatus.BAD_GATEWAY;
+    }
+
+    @GetMapping("/getAllOrders")
+    public List<OrderDTO> getAllOrders() {
+        return orderService.returnAllOrdersDTO();
+    }
+
+    @PostMapping("/changeOrderState")
+    public HttpStatus changeOrderState(@RequestBody Map<String, String> request) {
+        if (orderService.changeState(request))
+            return HttpStatus.OK;
+        return HttpStatus.BAD_GATEWAY;
     }
 }

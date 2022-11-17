@@ -14,10 +14,6 @@ public class UserService {
 
     @Autowired
     private MailService mailService;
-
-    @Autowired
-    private JwtProvider jwtProvider;
-
     @Autowired
     private PasswordEncoder encoder;
 
